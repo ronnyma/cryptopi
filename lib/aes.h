@@ -28,6 +28,6 @@ static const uint32_t rcon[11] = {
     0x10000000, 0x20000000, 0x40000000, 0x80000000, 0x1b000000, 0x36000000
 };
 
-void expand_key(const uint8_t[]);
+void expand_key(const uint8_t []);
 
 #endif
