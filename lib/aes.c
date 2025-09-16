@@ -1,5 +1,19 @@
 #include "aes.h"
 
+static uint32_t subst_word(uint32_t word) {
+    uint8_t *bytes = (uint8_t *) &word;
+    bytes[0] = sbox[bytes[0]];
+    bytes[1] = sbox[bytes[1]];
+    bytes[2] = sbox[bytes[2]];
+    bytes[3] = sbox[bytes[3]];
+    return word;
+}
+
+static uint32_t rot_word(uint32_t word) {
+    return word << 8 | word >> 24;
+}
+
+
 void expand_key(const uint8_t key[32]) {
     uint32_t w[60];
 
@@ -20,18 +34,4 @@ void expand_key(const uint8_t key[32]) {
 
         w[i] = w[i - 8] ^ temp;
     }
-}
-
-
-static uint32_t subst_word(uint32_t word) {
-    uint8_t *bytes = (uint8_t *) &word;
-    bytes[0] = sbox[bytes[0]];
-    bytes[1] = sbox[bytes[1]];
-    bytes[2] = sbox[bytes[2]];
-    bytes[3] = sbox[bytes[3]];
-    return word;
-}
-
-static uint32_t rot_word(uint32_t word) {
-    return word << 8 | word >> 24;
 }

@@ -30,8 +30,4 @@ static const uint32_t rcon[11] = {
 
 void expand_key(const uint8_t[]);
 
-static uint32_t subst_word(uint32_t);
-
-static uint32_t rot_word(uint32_t);
-
 #endif
